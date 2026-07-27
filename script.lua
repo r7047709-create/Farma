@@ -228,6 +228,7 @@ do
     }
     UIGradient.Rotation = -90
     UIGradient.Parent = Gradient
+    
 
     Pattern.SliceCenter = Rect.new(0, 256, 0, 256)
     Pattern.ScaleType = Enum.ScaleType.Tile
@@ -517,4 +518,809 @@ do
     Close.BorderSizePixel = 0
     Close.AutoButtonColor = false
     Close.TextScaled = true
-    Close.BackgroundColor3 = Color3.fromRGB(248, 4, 
+    Close.BackgroundColor3 = Color3.fromRGB(248, 4, 46)
+    Close.Position = UDim2.new(0.626422, 0, 0.871296, 0)
+    Close.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    Close.Name = "Close"
+    Close.AnchorPoint = Vector2.new(0.5, 0.5)
+    Close.Active = false
+    Close.TextSize = 20
+    Close.Size = UDim2.new(0.582, 0, 0.081, 0)
+    Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Close.Text = ""
+    Close.BackgroundTransparency = 1
+    Close.Selectable = false
+    Close.Parent = GET_KEY
+
+    Title_3.TextWrapped = true
+    Title_3.BorderSizePixel = 0
+    Title_3.TextScaled = true
+    Title_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Title_3.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+    Title_3.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Title_3.Name = "Title"
+    Title_3.AnchorPoint = Vector2.new(0.5, 0.5)
+    Title_3.Size = UDim2.new(1, 0, 0.6, 0)
+    Title_3.TextColor3 = Color3.fromRGB(248, 4, 46)
+    Title_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Title_3.Text = "CLOSE UI"
+    Title_3.BackgroundTransparency = 1
+    Title_3.Parent = Close
+    Title_3:SetAttribute("EngText", Title_3.Text)
+
+    UIStroke_4.Color = Color3.fromRGB(253, 1, 12)
+    UIStroke_4.Thickness = 1.25
+    UIStroke_4.Transparency = 0.25
+    UIStroke_4.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    UIStroke_4.Parent = Close
+
+    UICorner_6.CornerRadius = UDim.new(0, 7)
+    UICorner_6.Parent = Close
+
+    Frame.BorderSizePixel = 0
+    Frame.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+    Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+    Frame.Size = UDim2.new(0.838618, 0, 0.11308, 0)
+    Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Frame.Position = UDim2.new(0.50063, 0, 0.308795, 0)
+    Frame.ZIndex = 2
+    Frame.Parent = GET_KEY
+
+    UIStroke_5.Color = Color3.fromRGB(255, 255, 255)
+    UIStroke_5.Thickness = 1.25
+    UIStroke_5.Transparency = 0.5
+    UIStroke_5.Parent = Frame
+
+    UIGradient_2.Transparency = NumberSequence.new{
+        NumberSequenceKeypoint.new(0, 0),
+        NumberSequenceKeypoint.new(0.9, 0.995),
+        NumberSequenceKeypoint.new(1, 1)
+    }
+    UIGradient_2.Rotation = -90
+    UIGradient_2.Color = ColorSequence.new(Color3.fromRGB(248, 4, 46))
+    UIGradient_2.Parent = UIStroke_5
+
+    UIStroke_5.Thickness = 2
+
+    UIGradient_3.Transparency = NumberSequence.new{
+        NumberSequenceKeypoint.new(0, 0),
+        NumberSequenceKeypoint.new(0.9, 0.995),
+        NumberSequenceKeypoint.new(1, 1)
+    }
+    UIGradient_3.Rotation = -90
+    UIGradient_3.Parent = UIStroke_6
+
+    UICorner_7.CornerRadius = UDim.new(0, 7)
+
+    Frame_1.TextWrapped = true
+    Frame_1.BorderSizePixel = 0
+    Frame_1.TextScaled = true
+    UICorner_7.Parent = Frame
+    Frame_1.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+    Frame_1.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+    Frame_1.Position = UDim2.new(0.265781, 0, 0.485383, 0)
+    Frame_1.Name = "Title"
+    Frame_1.AnchorPoint = Vector2.new(0.5, 0.5)
+    Frame_1.Size = UDim2.new(0.393164, 0, 0.523336, 0)
+    Frame_1.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Frame_1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Frame_1.Text = "ENTER KEY HERE"
+    Frame_1.BackgroundTransparency = 1
+    Frame_1.TextXAlignment = Enum.TextXAlignment.Left
+    Frame_1.Parent = Frame
+    Frame_1:SetAttribute("EngText", Frame_1.Text)
+
+    Frame_2.TextWrapped = true
+    Frame_2.BorderSizePixel = 0
+    Frame_2.Position = UDim2.new(0.780933, 0, 0.498203, 0)
+    Frame_2.TextScaled = true
+    Frame_2.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+    Frame_2.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+    Frame_2.Active = true
+    Frame_2.AnchorPoint = Vector2.new(0.5, 0.5)
+    Frame_2.PlaceholderText = "..."
+    Frame_2.Size = UDim2.new(0.302255, 0, 0.600259, 0)
+    Frame_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Frame_2.Text = ""
+    Frame_2.Selectable = false
+    Frame_2.Name = "Textbox"
+    Frame_2.Parent = Frame
+
+    UIStroke_6.Color = Color3.fromRGB(248, 4, 46)
+    UIStroke_6.Thickness = 1.25
+    UIStroke_6.Transparency = 0.5
+    UIStroke_6.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    UIStroke_6.Parent = Frame_2
+
+    UICorner_8.CornerRadius = UDim.new(0, 7)
+    UICorner_8.Parent = Frame_2
+
+    Gradient_1.BorderSizePixel = 0
+    Gradient_1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Gradient_1.Size = UDim2.new(1, 0, 1, 0)
+    Gradient_1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Gradient_1.Name = "Gradient"
+    Gradient_1.Position = UDim2.new(0, 0, 2.11993e-08, 0)
+    Gradient_1.Parent = GET_KEY
+
+    UIGradient_1.Transparency = NumberSequence.new{
+        NumberSequenceKeypoint.new(0, 0.9),
+        NumberSequenceKeypoint.new(1, 0.9)
+    }
+    UIGradient_1.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(157, 2, 31)),
+        ColorSequenceKeypoint.new(0.468048, Color3.fromRGB(46.7098, 28.0691, 31.4853)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 30))
+    }
+    UIGradient_1.Rotation = -90
+    UIGradient_1.Parent = Gradient_1
+
+    Pattern_1.SliceCenter = Rect.new(0, 256, 0, 256)
+    Pattern_1.ScaleType = Enum.ScaleType.Tile
+    Pattern_1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Pattern_1.ImageTransparency = 0.6
+    Pattern_1.Position = UDim2.new(6.64996e-05, 0, 0.00124399, 0)
+    Pattern_1.Name = "Pattern"
+    Pattern_1.Image = "rbxassetid://2151741365"
+    Pattern_1.TileSize = UDim2.new(0, 250, 0, 250)
+    Pattern_1.Size = UDim2.new(1, 0, 1, 0)
+    Pattern_1.ZIndex = 0
+    Pattern_1.BackgroundTransparency = 1
+    Pattern_1.Parent = Gradient_1
+
+    Gradient_Frame.BorderSizePixel = 0
+    Gradient_Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Gradient_Frame.Size = UDim2.new(1, 0, 1, 0)
+    Gradient_Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Gradient_Frame.Name = "Gradient"
+    Gradient_Frame.Position = UDim2.new(0, 0, 2.11993e-08, 0)
+    Gradient_Frame.ZIndex = 0
+    Gradient_Frame.BackgroundTransparency = 1
+    Gradient_Frame.Parent = Frame
+
+    UIGradient_4.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(109, 1, 23)),
+        ColorSequenceKeypoint.new(0.531952, Color3.fromRGB(39.5556, 18.9764, 22.7252)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(24, 18, 19))
+    }
+    UIGradient_4.Rotation = -90
+    UIGradient_4.Parent = Gradient_Frame
+
+    UICorner_9.CornerRadius = UDim.new(0, 10)
+    UICorner_9.Parent = Gradient_Frame
+
+    HOHO_Gen4 = Instance.new("ScreenGui")
+    NOTIFICATION_ZONE = Instance.new("Frame")
+    UIListLayout_Main = Instance.new("UIListLayout")
+    UIAspectRatioConstraint_Main = Instance.new("UIAspectRatioConstraint")
+
+    HOHO_Gen4.IgnoreGuiInset = true
+    HOHO_Gen4.Enabled = true
+    HOHO_Gen4.ResetOnSpawn = false
+    HOHO_Gen4.Name = "HÐ¾hÐ¾_gÐµn4"
+    HOHO_Gen4.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
+    HOHO_Gen4.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    CoreGuiAdd(HOHO_Gen4)
+
+    NOTIFICATION_ZONE.BorderSizePixel = 0
+    NOTIFICATION_ZONE.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    NOTIFICATION_ZONE.AnchorPoint = Vector2.new(1, 1)
+    NOTIFICATION_ZONE.Size = UDim2.new(0.213415, 0, 1, 0)
+    NOTIFICATION_ZONE.ClipsDescendants = true
+    NOTIFICATION_ZONE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    NOTIFICATION_ZONE.BackgroundTransparency = 1
+    NOTIFICATION_ZONE.Name = "NOTIFICATION_ZONE"
+    NOTIFICATION_ZONE.Position = UDim2.new(1, 0, 1, 0)
+    NOTIFICATION_ZONE.Parent = HOHO_Gen4
+
+    UIListLayout_Main.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    UIListLayout_Main.VerticalAlignment = Enum.VerticalAlignment.Bottom
+    UIListLayout_Main.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout_Main.Parent = NOTIFICATION_ZONE
+
+    UIAspectRatioConstraint_Main.AspectRatio = 0.424757
+    UIAspectRatioConstraint_Main.Parent = NOTIFICATION_ZONE
+
+    GET_KEY.Visible = false
+    INTRO.GroupTransparency = 1
+    GET_KEY.GroupTransparency = 1
+
+    local function EnterKey(v)
+        local textbox = v["Textbox"]
+        local gradient = v.Gradient
+        local stroke = v.UIStroke
+
+        local tween_1_in = TweenService:Create(gradient, INFO_DOT25_QUAD, {BackgroundTransparency = 0})
+        local tween_2_in = TweenService:Create(stroke.UIGradient, INFO_DOT25_QUAD, {Offset = Vector2.new(0, -0.5)})
+
+        local tween_1_out = TweenService:Create(gradient, INFO_DOT25_QUAD, {BackgroundTransparency = 1})
+        local tween_2_out = TweenService:Create(stroke.UIGradient, INFO_DOT25_QUAD, {Offset = Vector2.new(0, 0)})
+
+        textbox.Focused:Connect(function()
+            tween_1_in:Play()
+            tween_2_in:Play()
+        end)
+
+        textbox.FocusLost:Connect(function()
+            tween_1_out:Play()
+            tween_2_out:Play()
+        end)
+    end
+
+    EnterKey(Frame)
+
+    for i, v in pairs({Get, Submit, Close, Support}) do
+        if isNotLocked(v) then
+            if v == Get or v == Submit then
+                v.MouseEnter:Connect(function()
+                    TweenService:Create(v.Hover, INFO_DOT25_QUAD, {ImageTransparency = 0.25}):Play()
+                end)
+                v.MouseLeave:Connect(function()
+                    TweenService:Create(v.Hover, INFO_DOT25_QUAD, {ImageTransparency = 1}):Play()
+                end)
+            else
+                v.MouseEnter:Connect(function()
+                    TweenService:Create(v, INFO_DOT25_QUAD, {BackgroundTransparency = 0.1}):Play()
+                    TweenService:Create(v["Title"], INFO_DOT25_QUAD, {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                end)
+                v.MouseLeave:Connect(function()
+                    TweenService:Create(v, INFO_DOT25_QUAD, {BackgroundTransparency = 1}):Play()
+                    TweenService:Create(v["Title"], INFO_DOT25_QUAD, {TextColor3 = Color3.fromRGB(248, 4, 46)}):Play()
+                end)
+            end
+        end
+    end
+
+    if (isfile("HoHo_Intro.txt") and (tick() - tonumber(readfile("HoHo_Intro.txt"))) >= 86400) or not isfile("HoHo_Intro.txt") then
+        writefile("HoHo_Intro.txt", tostring(tick()))
+        
+        local preload_content = {}
+        for i, v in pairs(HOHO_Passcheck:GetDescendants()) do
+            table.insert(preload_content, v)
+        end
+        for i, v in pairs(PreloadID) do
+            table.insert(preload_content, v)
+        end
+    
+        ContentProvider:PreloadAsync(preload_content)
+    
+        Content.Size = UDim2.new(0, 0, 1, 0)
+    
+        TweenService:Create(INTRO, INFO_DOT25_QUAD, {GroupTransparency = 0}):Play()
+        task.wait(0.5)
+        for i = 1, #preload_content do
+            local asset = preload_content[i]
+            local progress = i / #preload_content
+            TweenService:Create(Content, TweenInfo.new(0.1, Enum.EasingStyle.Quad), {Size = UDim2.new(progress, 0, 1, 0)}):Play()
+            task.wait(math.random(1, 5) / 50)
+        end
+    
+        TweenService:Create(INTRO, INFO_DOT25_QUAD, {GroupTransparency = 1}):Play()
+
+        task.wait(0.5)
+        task.spawn(request, {
+            Url = 'http://127.0.0.1:6463/rpc?v=1',
+            Method = 'POST',
+            Headers = {
+                ['Content-Type'] = 'application/json',
+                ['origin'] = 'https://ptb.discord.com',
+            },
+            Body = HttpService:JSONEncode({
+                ['args'] = {
+                    ['code'] = 'hohohub',
+                    ['sex'] = '?species=Goblin&realm=Toril'
+                },
+                ['cmd'] = 'INVITE_BROWSER',
+                ['nonce'] = 'OwO'
+            })
+        })
+    end
+
+    GET_KEY.Visible = true
+    TweenService:Create(GET_KEY, INFO_DOT25_QUAD, {GroupTransparency = 0}):Play()
+
+    local api = loadstring(game:HttpGet("https://sdkapi-public.luarmor.net/library.lua"))()
+    api.script_id = isSupport
+    
+    local checking_key = false
+
+    local function destroyUI()
+        HOHO_Passcheck:Destroy()
+        HOHO_Gen4:Destroy()
+    end
+
+    local function do_check_key(key)
+        if checking_key then return end
+        checking_key = true
+        key = key:gsub("[\r\n%z]", " "):gsub("[ \t]", ""):gsub("[ \n]", ""):gsub("[ \t]+%f[\r\n%z]", "")
+        local status = api.check_key(key)
+
+        StarterGui:SetCore("SendNotification", {
+            Title = "Key System",
+            Text = "[" .. status.code .. "] " .. status.message,
+            Icon = IS_CUSTOM_UI_MODE and CUSTOM_UI_MODE_DATA.CommunityIcon or "rbxassetid://16276677105"
+        })
+
+        if (status.code == "KEY_VALID") then            
+            script_key = key
+            getfenv(0).script_key = key
+            getfenv(1).script_key = key
+            getgenv().script_key = key
+
+            TweenService:Create(GET_KEY, INFO_DOT25_QUAD, {GroupTransparency = 1}):Play()
+
+            delay(0.2, destroyUI)
+
+            writefile("HohoKeyV4.txt", key)
+
+            pcall(function()
+                local a = "lowenddevice.hoho"
+                local b = false
+                local function c(d)
+                    if d == true then
+                        _G.lowend_device = true
+                    else
+                        _G.lowend_device = nil
+                    end
+                    b = true
+                end
+                
+                if isfile(a) then
+                    local e = readfile(a)
+                    c(e == "true")
+                else
+                    local f = game:GetService("Players")
+                    local g = game:GetService("TweenService")
+                    local h = game:GetService("CoreGui")
+                    local i = f.LocalPlayer
+                    local j = h:FindFirstChild("HoHo_LowEndPrompt")
+                    
+                    if j then
+                        j:Destroy()
+                    end
+                    
+                    local k = Instance.new("ScreenGui")
+                    k.Name = "HoHo_LowEndPrompt"
+                    k.ResetOnSpawn = false
+                    k.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                    k.IgnoreGuiInset = true
+                    k.DisplayOrder = 9999
+                    k.Parent = h
+                    
+                    local l = Instance.new("Frame")
+                    l.Name = "Backdrop"
+                    l.Size = UDim2.fromScale(1, 1)
+                    l.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+                    l.BackgroundTransparency = 1
+                    l.BorderSizePixel = 0
+                    l.ZIndex = 1
+                    l.Parent = k
+                    
+                    local m = Instance.new("Frame")
+                    m.Name = "Card"
+                    m.AnchorPoint = Vector2.new(0.5, 0.5)
+                    m.Position = UDim2.new(0.5, 0, 0.5, 30)
+                    m.Size = UDim2.new(0, 420, 0, 260)
+                    m.BackgroundColor3 = Color3.fromRGB(14, 14, 18)
+                    m.BorderSizePixel = 0
+                    m.ZIndex = 2
+                    m.Parent = k
+                    
+                    local n = Instance.new("Frame")
+                    n.Name = "TopAccent"
+                    n.Size = UDim2.new(1, 0, 0, 3)
+                    n.BackgroundColor3 = Color3.fromRGB(255, 145, 0)
+                    n.BorderSizePixel = 0
+                    n.ZIndex = 3
+                    n.Parent = m
+                    
+                    Instance.new("UICorner", n).CornerRadius = UDim.new(0, 14)
+                    
+                    local o = Instance.new("TextLabel")
+                    o.Name = "Icon"
+                    o.Size = UDim2.new(0, 48, 0, 48)
+                    o.Position = UDim2.new(0, 20, 0, 20)
+                    o.BackgroundColor3 = Color3.fromRGB(255, 145, 0)
+                    o.BackgroundTransparency = 0.85
+                    o.Text = "âš¡"
+                    o.TextSize = 24
+                    o.Font = Enum.Font.GothamBold
+                    o.TextColor3 = Color3.fromRGB(255, 145, 0)
+                    o.TextXAlignment = Enum.TextXAlignment.Center
+                    o.ZIndex = 3
+                    o.Parent = m
+                    
+                    Instance.new("UICorner", o).CornerRadius = UDim.new(0, 10)
+                    
+                    local p = Instance.new("TextLabel")
+                    p.Name = "Title"
+                    p.Size = UDim2.new(1, -90, 0, 28)
+                    p.Position = UDim2.new(0, 78, 0, 22)
+                    p.BackgroundTransparency = 1
+                    p.Text = "Performance Settings"
+                    p.TextSize = 18
+                    p.Font = Enum.Font.GothamBold
+                    p.TextColor3 = Color3.fromRGB(245, 245, 245)
+                    p.TextXAlignment = Enum.TextXAlignment.Left
+                    p.ZIndex = 3
+                    p.Parent = m
+                    
+                    local q = Instance.new("TextLabel")
+                    q.Name = "Body"
+                    q.Size = UDim2.new(1, -40, 0, 70)
+                    q.Position = UDim2.new(0, 20, 0, 76)
+                    q.BackgroundTransparency = 1
+                    q.Text = "Low-End Mode is recommended for smoother gameplay on older or lower-spec devices.\n\nWould you like to enable it now?"
+                    q.TextSize = 13
+                    q.Font = Enum.Font.Gotham
+                    q.TextColor3 = Color3.fromRGB(170, 170, 180)
+                    q.TextWrapped = true
+                    q.TextXAlignment = Enum.TextXAlignment.Left
+                    q.TextYAlignment = Enum.TextYAlignment.Top
+                    q.ZIndex = 3
+                    q.Parent = m
+                    
+                    local r = Instance.new("TextLabel")
+                    r.Name = "Badge"
+                    r.Size = UDim2.new(0, 110, 0, 22)
+                    r.Position = UDim2.new(0, 78, 0, 47)
+                    r.BackgroundColor3 = Color3.fromRGB(255, 145, 0)
+                    r.BackgroundTransparency = 0.82
+                    r.Text = "RECOMMENDED"
+                    r.TextSize = 10
+                    r.Font = Enum.Font.GothamBold
+                    r.TextColor3 = Color3.fromRGB(255, 160, 30)
+                    r.TextXAlignment = Enum.TextXAlignment.Center
+                    r.ZIndex = 3
+                    r.Parent = m
+                    
+                    Instance.new("UICorner", r).CornerRadius = UDim.new(0, 5)
+                    
+                    local s = Instance.new("Frame")
+                    s.Name = "Divider"
+                    s.Size = UDim2.new(1, -40, 0, 1)
+                    s.Position = UDim2.new(0, 20, 0, 158)
+                    s.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+                    s.BorderSizePixel = 0
+                    s.ZIndex = 3
+                    s.Parent = m
+                    
+                    local t = false
+                    
+                    local u = Instance.new("Frame")
+                    u.Name = "CheckRow"
+                    u.Size = UDim2.new(1, -40, 0, 26)
+                    u.Position = UDim2.new(0, 20, 0, 170)
+                    u.BackgroundTransparency = 1
+                    u.ZIndex = 3
+                    u.Parent = m
+                    
+                    local v = Instance.new("TextButton")
+                    v.Name = "CheckBox"
+                    v.Size = UDim2.new(0, 18, 0, 18)
+                    v.Position = UDim2.new(0, 0, 0.5, -9)
+                    v.BackgroundColor3 = Color3.fromRGB(30, 30, 38)
+                    v.Text = ""
+                    v.BorderSizePixel = 0
+                    v.ZIndex = 4
+                    v.Parent = u
+                    
+                    Instance.new("UICorner", v).CornerRadius = UDim.new(0, 5)
+                    
+                    local w = Instance.new("UIStroke")
+                    w.Color = Color3.fromRGB(80, 80, 100)
+                    w.Thickness = 1.5
+                    w.Parent = v
+                    
+                    local x = Instance.new("TextLabel")
+                    x.Name = "CheckMark"
+                    x.Size = UDim2.fromScale(1, 1)
+                    x.BackgroundTransparency = 1
+                    x.Text = ""
+                    x.TextSize = 13
+                    x.Font = Enum.Font.GothamBold
+                    x.TextColor3 = Color3.fromRGB(255, 145, 0)
+                    x.ZIndex = 5
+                    x.Parent = v
+                    
+                    local y = Instance.new("TextLabel")
+                    y.Name = "CheckLabel"
+                    y.Size = UDim2.new(1, -26, 1, 0)
+                    y.Position = UDim2.new(0, 26, 0, 0)
+                    y.BackgroundTransparency = 1
+                    y.Text = "Don't ask me again"
+                    y.TextSize = 12
+                    y.Font = Enum.Font.Gotham
+                    y.TextColor3 = Color3.fromRGB(130, 130, 145)
+                    y.TextXAlignment = Enum.TextXAlignment.Left
+                    y.ZIndex = 4
+                    y.Parent = u
+                    
+                    v.MouseButton1Click:Connect(function()
+                        t = not t
+                        if t then
+                            x.Text = "âœ“"
+                            v.BackgroundColor3 = Color3.fromRGB(255, 145, 0)
+                            v.BackgroundTransparency = 0.75
+                            w.Color = Color3.fromRGB(255, 145, 0)
+                        else
+                            x.Text = ""
+                            v.BackgroundColor3 = Color3.fromRGB(30, 30, 38)
+                            v.BackgroundTransparency = 0
+                            w.Color = Color3.fromRGB(80, 80, 100)
+                        end
+                    end)
+                    
+                    local z = Instance.new("Frame")
+                    z.Name = "BtnRow"
+                    z.Size = UDim2.new(1, -40, 0, 40)
+                    z.Position = UDim2.new(0, 20, 1, -58)
+                    z.BackgroundTransparency = 1
+                    z.ZIndex = 3
+                    z.Parent = m
+                    
+                    local A = Instance.new("UIListLayout")
+                    A.FillDirection = Enum.FillDirection.Horizontal
+                    A.HorizontalAlignment = Enum.HorizontalAlignment.Right
+                    A.VerticalAlignment = Enum.VerticalAlignment.Center
+                    A.Padding = UDim.new(0, 10)
+                    A.Parent = z
+                    
+                    local function B(C, D, E)
+                        local F = Instance.new("TextButton")
+                        F.Size = UDim2.new(0, 130, 0, 36)
+                        F.BackgroundColor3 = D
+                        F.Text = C
+                        F.TextSize = 13
+                        F.Font = Enum.Font.GothamBold
+                        F.TextColor3 = E
+                        F.BorderSizePixel = 0
+                        F.ZIndex = 4
+                        F.AutoButtonColor = false
+                        Instance.new("UICorner", F).CornerRadius = UDim.new(0, 8)
+                        F.MouseEnter:Connect(function()
+                            g:Create(F, TweenInfo.new(0.15), {BackgroundTransparency = 0.18}):Play()
+                        end)
+                        F.MouseLeave:Connect(function()
+                            g:Create(F, TweenInfo.new(0.15), {BackgroundTransparency = 0}):Play()
+                        end)
+                        return F
+                    end
+                    
+                    local G = B("No, thanks", Color3.fromRGB(35, 35, 45), Color3.fromRGB(160, 160, 175))
+                    local H = B("Enable", Color3.fromRGB(255, 145, 0), Color3.fromRGB(255, 255, 255))
+                    G.Parent = z
+                    H.Parent = z
+                    
+                    local function I(J)
+                        local K = g:Create(m, TweenInfo.new(0.25, Enum.EasingStyle.Quint), {Position = UDim2.new(0.5, 0, 0.5, 40), BackgroundTransparency = 1})
+                        local L = g:Create(l, TweenInfo.new(0.25), {BackgroundTransparency = 1})
+                        K:Play()
+                        L:Play()
+                        L.Completed:Connect(function()
+                            k:Destroy()
+                        end)
+                        c(J)
+                        if t then
+                            local M = J and "true" or "false"
+                            writefile(a, M)
+                        end
+                    end
+                    
+                    H.MouseButton1Click:Connect(function()
+                        I(true)
+                    end)
+                    
+                    G.MouseButton1Click:Connect(function()
+                        I(false)
+                    end)
+                    
+                    g:Create(l, TweenInfo.new(0.3), {BackgroundTransparency = 0.45}):Play()
+                    g:Create(m, TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position = UDim2.new(0.5, 0, 0.5, 0)}):Play()
+                end
+                repeat wait() until b
+            end)
+
+            if status.data.note == "Ad Reward" and not IS_CUSTOM_UI_MODE then
+                spawn(function()
+                    local a = Instance.new("ScreenGui")
+                    a.Name = "GOATAD"
+                    a.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                    a.DisplayOrder = 99999
+                    
+                    local b = Instance.new("ImageLabel")
+                    b.Size = UDim2.new(0.1580756, 0, 0.3768844, 0)
+                    b.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                    b.Position = UDim2.new(0.5009901, 0, 0.129397, 0)
+                    b.BorderSizePixel = 0
+                    b.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    b.Image = "rbxassetid://115402493"
+                    b.Parent = a
+                    
+                    local c = Instance.new("ImageLabel")
+                    c.ZIndex = 4
+                    c.Size = UDim2.new(0.0687285, 0, 0.1243719, 0)
+                    c.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                    c.BackgroundTransparency = 1
+                    c.Position = UDim2.new(0.4537658, 0, 0.0502513, 0)
+                    c.BorderSizePixel = 0
+                    c.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    c.Image = "rbxassetid://106332978966253"
+                    c.Parent = a
+                    
+                    local d = Instance.new("ImageLabel")
+                    d.Size = UDim2.new(0.1072165, 0, 0.1645729, 0)
+                    d.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                    d.BackgroundTransparency = 1
+                    d.Position = UDim2.new(0.6050893, 0, 0.3555276, 0)
+                    d.BorderSizePixel = 0
+                    d.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    d.Image = "rbxassetid://13295155606"
+                    d.Parent = a
+                    
+                    local e = Instance.new("TextLabel")
+                    e.Size = UDim2.new(0.2226804, 0, 0.2512563, 0)
+                    e.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                    e.BackgroundTransparency = 0.6
+                    e.Position = UDim2.new(0.4070528, 0, 0.1746231, 0)
+                    e.BorderSizePixel = 0
+                    e.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+                    e.FontSize = Enum.FontSize.Size14
+                    e.TextStrokeTransparency = 0.15
+                    e.TextSize = 14
+                    e.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    e.Text = "Tired of grabbing a new key every time? Upgrade to HoHo Hub Premium for just $5.5 lifetime â€“ skip ads, no waiting!"
+                    e.TextWrapped = true
+                    e.TextWrap = true
+                    e.Font = Enum.Font.Unknown
+                    e.TextScaled = true
+                    e.Parent = a
+                    
+                    local f = Instance.new("UICorner")
+                    f.Parent = e
+                    
+                    local g = Instance.new("TextButton")
+                    g.Size = UDim2.new(0.0845361, 0, 0.0628141, 0)
+                    g.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                    g.Position = UDim2.new(0.4683869, 0, 0.4572864, 0)
+                    g.BorderSizePixel = 0
+                    g.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
+                    g.FontSize = Enum.FontSize.Size14
+                    g.TextStrokeTransparency = 0
+                    g.TextSize = 14
+                    g.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    g.Text = "Take it!"
+                    g.TextWrapped = true
+                    g.TextWrap = true
+                    g.Font = Enum.Font.DenkOne
+                    g.TextScaled = true
+                    g.Parent = a
+                    
+                    local h = Instance.new("ImageButton")
+                    h.Size = UDim2.new(0.0323024, 0, 0.0464824, 0)
+                    h.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                    h.BackgroundTransparency = 1
+                    h.Position = UDim2.new(0.629228, 0, 0.0829145, 0)
+                    h.BorderSizePixel = 0
+                    h.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    h.Image = "rbxassetid://385868188"
+                    h.Parent = a
+                    
+                    local i = Instance.new("ImageLabel")
+                    i.ZIndex = 4
+                    i.Size = UDim2.new(0.0687285, 0, 0.1243719, 0)
+                    i.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                    i.BackgroundTransparency = 1
+                    i.Position = UDim2.new(0.5527145, 0, 0.4095477, 0)
+                    i.BorderSizePixel = 0
+                    i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    i.Image = "rbxassetid://5128828029"
+                    i.Parent = a
+                    
+                    local j = Instance.new("ImageLabel")
+                    j.ZIndex = 4
+                    j.Size = UDim2.new(0.1127148, 0, 0.1407035, 0)
+                    j.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                    j.BackgroundTransparency = 1
+                    j.Position = UDim2.new(0.5177713, 0, 0.0427136, 0)
+                    j.BorderSizePixel = 0
+                    j.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    j.Image = "rbxassetid://138393932323579"
+                    j.Parent = a
+                    
+                    local k = Instance.new("TextLabel")
+                    k.Size = UDim2.new(0.1250859, 0, 0.0376884, 0)
+                    k.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                    k.Rotation = 90
+                    k.BackgroundTransparency = 1
+                    k.Position = UDim2.new(0.6056783, 0, 0.2273869, 0)
+                    k.BorderSizePixel = 0
+                    k.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    k.FontSize = Enum.FontSize.Size14
+                    k.TextStrokeTransparency = 0.15
+                    k.TextSize = 14
+                    k.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    k.Text = "This ads will auto close after 30s."
+                    k.TextWrapped = true
+                    k.TextWrap = true
+                    k.Font = Enum.Font.SourceSans
+                    k.TextScaled = true
+                    k.Parent = a
+                    
+                    a.Parent = game:GetService("CoreGui")
+                    
+                    h.MouseButton1Click:Connect(function()
+                        a:Destroy()
+                    end)
+                    
+                    g.MouseButton1Click:Connect(function()
+                        setclipboard('https://discord.com/invite/hohohub')
+                        game:GetService("StarterGui"):SetCore("SendNotification", {
+                            Title = "Copied Discord Invite",
+                            Text = "Join our server to buy script!",
+                            Icon = "rbxassetid://16276677105"
+                        })
+                    end)
+                    
+                    game.Debris:AddItem(a, 30)
+                end)
+            end
+
+            wait(0.25)
+            
+            api.load_script()
+        end
+        checking_key = false
+    end
+    
+    local function ABCXYZ()
+        local key = Frame.Textbox.Text
+        do_check_key(key)
+    end
+    
+    Submit.MouseButton1Click:Connect(ABCXYZ)
+
+    Support.MouseButton1Click:Once(function()
+        TeleportService:Teleport(16325746227)
+    end)
+
+    Close.MouseButton1Click:Once(function()
+        UI_LOCK = true
+        TweenService:Create(GET_KEY, INFO_DOT25_QUAD, {GroupTransparency = 1}):Play()
+
+        delay(0.2, destroyUI)
+        Result = nil
+    end)
+
+    Get.MouseButton1Click:Connect(function()
+        local link = 'https://hehehub-acsu123.pythonanywhere.com/api/getkey?hwid=' .. tick()
+        if IS_CUSTOM_UI_MODE and CUSTOM_UI_MODE_DATA.IntroText then
+            link = CUSTOM_UI_MODE_DATA.GetKeyLink
+        end
+        setclipboard(link)
+        StarterGui:SetCore("SendNotification", {
+            Title = "Key System",
+            Text = "Key Link 1 Copied!",
+            Icon = IS_CUSTOM_UI_MODE and CUSTOM_UI_MODE_DATA.CommunityIcon or "rbxassetid://16276677105"
+        })
+    end)
+
+    Get2.MouseButton1Click:Connect(function()
+        setclipboard(IS_CUSTOM_UI_MODE and CUSTOM_UI_MODE_DATA.TutorialLink or 'https://hehehub-acsu123.pythonanywhere.com/api/getkey?hwid=TUTORIAL')
+        StarterGui:SetCore("SendNotification", {
+            Title = "Key System",
+            Text = "Get Key Tutorial Copied!",
+            Icon = IS_CUSTOM_UI_MODE and CUSTOM_UI_MODE_DATA.CommunityIcon or "rbxassetid://16276677105"
+        })
+    end)
+    
+    do
+        if isfile("HohoKeyV4.txt") or _G.MY_KEY_IS then
+            local key = _G.MY_KEY_IS and _G.MY_KEY_IS or readfile("HohoKeyV4.txt")
+            Frame.Textbox.Text = key
+            do_check_key(key)
+        end
+    end
+end"
