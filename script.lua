@@ -1,28 +1,26 @@
 --[[
     =============================================================================
-    🏴‍☠️ PIRATE HUB V4 PRO (CROSS-PLATFORM: PC & MOBILE)
-    ⚡ Compatível com Arceus X, Delta, Hydrogen, Wave, PC
-    📱 Otimizado para Realme C3 (Baixo consumo de RAM e CPU)
+    🏴‍☠️ PIRATE HUB V5 - AUTO FARM LEVEL + AUTO FRUTAS + FAST ATTACK
+    ⚡ O Melhor Sistema de Clique e Ataque Rápido
+    📱 Interface Moderna, Bonita e Ultra Leve (Realme C3 & PC)
     =============================================================================
 ]]
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 
--- Evita abrir duas interfaces ao mesmo tempo
-if _G.PirateHub_V4_Pro then 
-    if game:GetService("CoreGui"):FindFirstChild("PirateHub_V4_Pro") then
-        game:GetService("CoreGui").PirateHub_V4_Pro:Destroy()
-    end
+-- Limpa interface antiga se já estiver aberta
+if _G.PirateHub_V5 then 
+    pcall(function()
+        if game:GetService("CoreGui"):FindFirstChild("PirateHub_V5") then
+            game:GetService("CoreGui").PirateHub_V5:Destroy()
+        end
+    end)
 end
-_G.PirateHub_V4_Pro = true
+_G.PirateHub_V5 = true
 
--- [ESTADOS GLOBAIS DE CONTROLE]
-_G.PH_AutoFarmLevel = false
-_G.PH_AutoFruits    = false
-_G.PH_AutoChests    = false
-_G.PH_AutoStats     = false
-_G.PH_Speed         = false
-_G.PH_ESP           = false
+-- Variáveis de Controle
+_G.PH_AutoFarm = false
+_G.PH_AutoFruits = false
 
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
@@ -33,9 +31,9 @@ local RunService = game:GetService("RunService")
 local CoreGui = game:GetService("CoreGui")
 local LocalPlayer = Players.LocalPlayer
 
--- [1. CRIAÇÃO DA INTERFACE GRÁFICA]
+-- [1. CRIAÇÃO DA INTERFACE MODERNA E BONITA]
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "PirateHub_V4_Pro"
+ScreenGui.Name = "PirateHub_V5"
 ScreenGui.ResetOnSpawn = false
 
 local success, _ = pcall(function() ScreenGui.Parent = CoreGui end)
@@ -43,11 +41,11 @@ if not success or not ScreenGui.Parent then
     ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 end
 
--- Janela Principal
+-- Painel Principal (Fundo Escuro com Borda Dourada)
 local mainFrame = Instance.new("Frame")
-mainFrame.Size = UDim2.new(0, 230, 0, 330)
-mainFrame.Position = UDim2.new(0.5, -115, 0.35, -165)
-mainFrame.BackgroundColor3 = Color3.fromRGB(15, 17, 26)
+mainFrame.Size = UDim2.new(0, 240, 0, 260)
+mainFrame.Position = UDim2.new(0.5, -120, 0.35, -130)
+mainFrame.BackgroundColor3 = Color3.fromRGB(13, 15, 24)
 mainFrame.BorderSizePixel = 0
 mainFrame.Active = true
 mainFrame.Draggable = true
@@ -55,60 +53,64 @@ mainFrame.ClipsDescendants = true
 mainFrame.Parent = ScreenGui
 
 local mainCorner = Instance.new("UICorner")
-mainCorner.CornerRadius = UDim.new(0, 12)
+mainCorner.CornerRadius = UDim.new(0, 14)
 mainCorner.Parent = mainFrame
 
-local stroke = Instance.new("UIStroke")
-stroke.Thickness = 1
-stroke.Color = Color3.fromRGB(245, 158, 11)
-stroke.Transparency = 0.4
-stroke.Parent = mainFrame
+local mainStroke = Instance.new("UIStroke")
+mainStroke.Thickness = 1.5
+mainStroke.Color = Color3.fromRGB(245, 158, 11)
+mainStroke.Transparency = 0.3
+mainStroke.Parent = mainFrame
 
--- Título
+-- Cabeçalho
+local header = Instance.new("Frame")
+header.Size = UDim2.new(1, 0, 0, 38)
+header.BackgroundColor3 = Color3.fromRGB(18, 22, 34)
+header.BorderSizePixel = 0
+header.Parent = mainFrame
+
+local headerCorner = Instance.new("UICorner")
+headerCorner.CornerRadius = UDim.new(0, 14)
+headerCorner.Parent = header
+
 local title = Instance.new("TextLabel")
-title.Size = UDim2.new(1, 0, 0, 38)
+title.Size = UDim2.new(1, -40, 1, 0)
+title.Position = UDim2.new(0, 14, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "⚡ PIRATE HUB V4 PRO"
-title.TextColor3 = Color3.fromRGB(245, 158, 11)
+title.Text = "⚡ PIRATE HUB <font color='#F59E0B'>V5</font>"
+title.RichText = true
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 13
 title.Font = Enum.Font.GothamBlack
-title.Parent = mainFrame
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = header
 
--- Scroll para caber todos os botões
-local scroll = Instance.new("ScrollingFrame")
-scroll.Size = UDim2.new(0.92, 0, 0, 245)
-scroll.Position = UDim2.new(0.04, 0, 0, 40)
-scroll.BackgroundTransparency = 1
-scroll.BorderSizePixel = 0
-scroll.ScrollBarThickness = 3
-scroll.ScrollBarImageColor3 = Color3.fromRGB(245, 158, 11)
-scroll.CanvasSize = UDim2.new(0, 0, 0, 440)
-scroll.Parent = mainFrame
+local closeBtn = Instance.new("TextButton")
+closeBtn.Size = UDim2.new(0, 24, 0, 24)
+closeBtn.Position = UDim2.new(1, -30, 0, 7)
+closeBtn.BackgroundColor3 = Color3.fromRGB(255, 65, 65)
+closeBtn.Text = "×"
+closeBtn.TextSize = 16
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.Parent = header
 
-local listLayout = Instance.new("UIListLayout")
-listLayout.Padding = UDim.new(0, 6)
-listLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-listLayout.Parent = scroll
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(0, 6)
+closeCorner.Parent = closeBtn
 
--- Rodapé
-local statusLabel = Instance.new("TextLabel")
-statusLabel.Size = UDim2.new(1, 0, 0, 30)
-statusLabel.Position = UDim2.new(0, 0, 0, 295)
-statusLabel.BackgroundTransparency = 1
-statusLabel.Text = "💻 PC: [RCtrl] | 📱 Mobile: [⚡]"
-statusLabel.TextColor3 = Color3.fromRGB(140, 150, 175)
-statusLabel.TextSize = 10
-statusLabel.Font = Enum.Font.GothamMedium
-statusLabel.Parent = mainFrame
+closeBtn.MouseButton1Click:Connect(function()
+    mainFrame.Visible = false
+end)
 
--- Botão Flutuante (Mobile)
+-- Botão Flutuante Móvel (Mobile ⚡)
 local toggleBtn = Instance.new("TextButton")
-toggleBtn.Size = UDim2.new(0, 44, 0, 44)
-toggleBtn.Position = UDim2.new(0, 15, 0.5, -22)
+toggleBtn.Size = UDim2.new(0, 46, 0, 46)
+toggleBtn.Position = UDim2.new(0, 15, 0.5, -23)
 toggleBtn.BackgroundColor3 = Color3.fromRGB(245, 158, 11)
 toggleBtn.Text = "⚡"
 toggleBtn.TextSize = 22
-toggleBtn.TextColor3 = Color3.fromRGB(15, 17, 26)
+toggleBtn.TextColor3 = Color3.fromRGB(13, 15, 24)
 toggleBtn.Active = true
 toggleBtn.Draggable = true
 toggleBtn.Parent = ScreenGui
@@ -117,59 +119,114 @@ local toggleCorner = Instance.new("UICorner")
 toggleCorner.CornerRadius = UDim.new(0, 12)
 toggleCorner.Parent = toggleBtn
 
+local toggleStroke = Instance.new("UIStroke")
+toggleStroke.Thickness = 2
+toggleStroke.Color = Color3.fromRGB(255, 255, 255)
+toggleStroke.Transparency = 0.5
+toggleStroke.Parent = toggleBtn
+
 toggleBtn.MouseButton1Click:Connect(function()
     mainFrame.Visible = not mainFrame.Visible
 end)
 
--- Tecla PC (RightControl)
+-- Tecla RightControl para PC
 UserInputService.InputBegan:Connect(function(input, processed)
     if not processed and input.KeyCode == Enum.KeyCode.RightControl then
         mainFrame.Visible = not mainFrame.Visible
     end
-end)-- [2. FUNÇÕES DE CRIAÇÃO DE BOTÕES]
-local function criarBotaoToggle(texto, callback)
+end)
+
+-- Container dos Botões
+local btnContainer = Instance.new("Frame")
+btnContainer.Size = UDim2.new(1, -24, 0, 160)
+btnContainer.Position = UDim2.new(0, 12, 0, 48)
+btnContainer.BackgroundTransparency = 1
+btnContainer.Parent = mainFrame
+
+local listLayout = Instance.new("UIListLayout")
+listLayout.Padding = UDim.new(0, 10)
+listLayout.Parent = btnContainer
+
+-- Criador de Botão Moderno com Chave Seletora
+local function criarToggle(texto, callback)
     local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(1, 0, 0, 32)
-    btn.BackgroundColor3 = Color3.fromRGB(220, 45, 45)
-    btn.Text = texto .. ": OFF"
-    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    btn.TextSize = 10
-    btn.Font = Enum.Font.GothamBold
-    btn.Parent = scroll
+    btn.Size = UDim2.new(1, 0, 0, 42)
+    btn.BackgroundColor3 = Color3.fromRGB(22, 27, 42)
+    btn.Text = ""
+    btn.AutoButtonColor = false
+    btn.Parent = btnContainer
 
     local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, 6)
+    corner.CornerRadius = UDim.new(0, 8)
     corner.Parent = btn
+
+    local bStroke = Instance.new("UIStroke")
+    bStroke.Thickness = 1
+    bStroke.Color = Color3.fromRGB(40, 50, 75)
+    bStroke.Parent = btn
+
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(0.7, 0, 1, 0)
+    label.Position = UDim2.new(0, 12, 0, 0)
+    label.BackgroundTransparency = 1
+    label.Text = texto
+    label.TextColor3 = Color3.fromRGB(220, 230, 255)
+    label.TextSize = 11
+    label.Font = Enum.Font.GothamBold
+    label.TextXAlignment = Enum.TextXAlignment.Left
+    label.Parent = btn
+
+    local pill = Instance.new("Frame")
+    pill.Size = UDim2.new(0, 36, 0, 20)
+    pill.Position = UDim2.new(1, -46, 0.5, -10)
+    pill.BackgroundColor3 = Color3.fromRGB(45, 55, 75)
+    pill.Parent = btn
+
+    local pillCorner = Instance.new("UICorner")
+    pillCorner.CornerRadius = UDim.new(1, 0)
+    pillCorner.Parent = pill
+
+    local circle = Instance.new("Frame")
+    circle.Size = UDim2.new(0, 14, 0, 14)
+    circle.Position = UDim2.new(0, 3, 0.5, -7)
+    circle.BackgroundColor3 = Color3.fromRGB(160, 170, 190)
+    circle.Parent = pill
+
+    local circleCorner = Instance.new("UICorner")
+    circleCorner.CornerRadius = UDim.new(1, 0)
+    circleCorner.Parent = circle
 
     local estado = false
     btn.MouseButton1Click:Connect(function()
         estado = not estado
-        btn.Text = texto .. (estado and ": ON" or ": OFF")
-        btn.BackgroundColor3 = estado and Color3.fromRGB(35, 185, 75) or Color3.fromRGB(220, 45, 45)
+        if estado then
+            pill.BackgroundColor3 = Color3.fromRGB(245, 158, 11)
+            circle.Position = UDim2.new(1, -17, 0.5, -7)
+            circle.BackgroundColor3 = Color3.fromRGB(15, 17, 26)
+            bStroke.Color = Color3.fromRGB(245, 158, 11)
+        else
+            pill.BackgroundColor3 = Color3.fromRGB(45, 55, 75)
+            circle.Position = UDim2.new(0, 3, 0.5, -7)
+            circle.BackgroundColor3 = Color3.fromRGB(160, 170, 190)
+            bStroke.Color = Color3.fromRGB(40, 50, 75)
+        end
         callback(estado)
     end)
     return btn
 end
 
-local function criarBotaoAcao(texto, callback)
-    local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(1, 0, 0, 30)
-    btn.BackgroundColor3 = Color3.fromRGB(25, 35, 55)
-    btn.Text = texto
-    btn.TextColor3 = Color3.fromRGB(210, 230, 255)
-    btn.TextSize = 10
-    btn.Font = Enum.Font.GothamBold
-    btn.Parent = scroll
-
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, 6)
-    corner.Parent = btn
-
-    btn.MouseButton1Click:Connect(callback)
-    return btn
-end
-
--- [3. TABELA DE MISSÕES E LOCAIS DO PRIMEIRO MAR (SEA 1)]
+-- Rodapé
+local footer = Instance.new("TextLabel")
+footer.Size = UDim2.new(1, 0, 0, 25)
+footer.Position = UDim2.new(0, 0, 1, -28)
+footer.BackgroundTransparency = 1
+footer.Text = "📱 Realme C3 • Fast Attack Ativo"
+footer.TextColor3 = Color3.fromRGB(110, 120, 145)
+footer.TextSize = 10
+footer.Font = Enum.Font.GothamMedium
+footer.Parent = mainFramefooter.Font = Enum.Font.GothamMedium
+footer.Parent = mainFrame
+-- [2. TABELA COMPLETA DE MISSÕES BLOX FRUITS - SEA 1]
 local TABELA_MISSOES = {
     {MinLvl = 1,   MaxLvl = 9,    Quest = "BanditQuest1",     NpcName = "Bandit",              LevelId = 1, CFrameQuest = CFrame.new(1059, 16, 1549)},
     {MinLvl = 10,  MaxLvl = 14,   Quest = "JungleQuest",      NpcName = "Monkey",              LevelId = 1, CFrameQuest = CFrame.new(-1598, 36, 153)},
@@ -193,7 +250,7 @@ local TABELA_MISSOES = {
     {MinLvl = 625, MaxLvl = 700,  Quest = "FountainQuest",    NpcName = "Galley Pirate",       LevelId = 1, CFrameQuest = CFrame.new(5258, 38, 4050)}
 }
 
--- [4. FUNÇÕES AUXILIARES]
+-- [3. FUNÇÕES DE CHECAGEM DE LEVEL E MISSÃO]
 local function obterLevelAtual()
     local d = LocalPlayer:FindFirstChild("Data")
     return (d and d:FindFirstChild("Level")) and d.Level.Value or 1
@@ -211,28 +268,48 @@ local function temMissaoAtiva()
     return (pg and pg:FindFirstChild("Main") and pg.Main:FindFirstChild("Quest") and pg.Main.Quest.Visible)
 end
 
-local function equiparArma()
+-- [4. O MELHOR SISTEMA DE CLIQUE / FAST ATTACK TRIPLO]
+local function executarFastAttack()
     local char = LocalPlayer.Character
-    if not char then return end
-    local equipped = char:FindFirstChildOfClass("Tool")
-    if equipped then 
-        equipped:Activate()
-        return 
-    end
+    if not char or not char:FindFirstChild("Humanoid") or char.Humanoid.Health <= 0 then return end
 
-    local bp = LocalPlayer:FindFirstChild("Backpack")
-    if bp then
-        for _, t in ipairs(bp:GetChildren()) do
-            if t:IsA("Tool") and (t.ToolTip == "Melee" or t.ToolTip == "Sword" or t.ToolTip == "Blox Fruit") then
-                char.Humanoid:EquipTool(t)
-                t:Activate()
-                break
+    -- 1. Garante arma na mão (Soco, Espada ou Fruta)
+    local equippedTool = char:FindFirstChildOfClass("Tool")
+    if not equippedTool then
+        local bp = LocalPlayer:FindFirstChild("Backpack")
+        if bp then
+            for _, tool in ipairs(bp:GetChildren()) do
+                if tool:IsA("Tool") then
+                    local tipo = tool.ToolTip
+                    if tipo == "Melee" or tipo == "Sword" or tipo == "Blox Fruit" or tool:FindFirstChild("Handle") then
+                        char.Humanoid:EquipTool(tool)
+                        equippedTool = tool
+                        break
+                    end
+                end
             end
         end
     end
+
+    -- 2. Disparo de ataque otimizado sem travar o jogo
+    if equippedTool then
+        pcall(function()
+            equippedTool:Activate()
+        end)
+
+        VirtualUser:CaptureController()
+        VirtualUser:Button1Down(Vector2.new(0, 0))
+        VirtualUser:Button1Up(Vector2.new(0, 0))
+
+        pcall(function()
+            if ReplicatedStorage:FindFirstChild("RigControllerEvent") then
+                ReplicatedStorage.RigControllerEvent:FireServer("weaponChange", tostring(equippedTool.Name))
+            end
+        end)
+    end
 end
 
--- Estabilizador Antigravidade Aéreo
+-- Estabilizador Antigravidade Aéreo (Não cai da altura do farm)
 local function fixarFlutuacao(root)
     if not root:FindFirstChild("PH_Float") then
         local bv = Instance.new("BodyVelocity")
@@ -249,9 +326,9 @@ local function removerFlutuacao(root)
     end
 end
 
--- Noclip durante o farm para não colidir com paredes
+-- Noclip automático durante o farm para não colidir em paredes
 RunService.Stepped:Connect(function()
-    if _G.PH_AutoFarmLevel or _G.PH_AutoChests or _G.PH_AutoFruits then
+    if _G.PH_AutoFarm or _G.PH_AutoFruits then
         local char = LocalPlayer.Character
         if char then
             for _, p in ipairs(char:GetChildren()) do
@@ -261,55 +338,24 @@ RunService.Stepped:Connect(function()
             end
         end
     end
-end)-- [5. REGISTRO E CRIAÇÃO DOS BOTÕES NO MENU]
-criarBotaoToggle("⚔️ AUTO FARM LEVEL", function(on)
-    _G.PH_AutoFarmLevel = on
+end)-- [5. REGISTRO DOS BOTÕES NA INTERFACE]
+criarToggle("⚔️ AUTO FARM LEVEL", function(on)
+    _G.PH_AutoFarm = on
     if not on and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
         removerFlutuacao(LocalPlayer.Character.HumanoidRootPart)
     end
 end)
 
-criarBotaoToggle("🍒 AUTO PEGAR FRUTAS", function(on)
+criarToggle("🍒 AUTO PEGAR FRUTAS", function(on)
     _G.PH_AutoFruits = on
 end)
 
-criarBotaoToggle("💰 AUTO FARM BAÚS", function(on)
-    _G.PH_AutoChests = on
-end)
-
-criarBotaoToggle("🛡️ AUTO STATS (MELEE/DEF)", function(on)
-    _G.PH_AutoStats = on
-end)
-
-criarBotaoToggle("💨 VELOCIDADE (70)", function(on)
-    _G.PH_Speed = on
-    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
-        LocalPlayer.Character.Humanoid.WalkSpeed = on and 70 or 16
-    end
-end)
-
-criarBotaoToggle("👁️ ESP PLAYERS", function(on)
-    _G.PH_ESP = on
-end)
-
--- Botões de Viagem Rápida entre Mares
-criarBotaoAcao("🚢 VIAJAR SEA 1", function()
-    pcall(function() ReplicatedStorage.Remotes.CommF_:InvokeServer("TravelMain") end)
-end)
-
-criarBotaoAcao("🚢 VIAJAR SEA 2", function()
-    pcall(function() ReplicatedStorage.Remotes.CommF_:InvokeServer("TravelDressrosa") end)
-end)
-
-criarBotaoAcao("🚢 VIAJAR SEA 3", function()
-    pcall(function() ReplicatedStorage.Remotes.CommF_:InvokeServer("TravelZou") end)
-end)
-
--- [6. MOTOR PRINCIPAL: AUTO FARM LEVEL]
+-- [6. MOTOR PRINCIPAL: AUTO FARM LEVEL COM FLUTUAÇÃO SEGURA]
 task.spawn(function()
     while true do
-        task.wait(0.2)
-        if _G.PH_AutoFarmLevel then
+        task.wait(0.15) -- Cadência ideal para fast attack sem travar o celular
+
+        if _G.PH_AutoFarm then
             local char = LocalPlayer.Character
             local root = char and char:FindFirstChild("HumanoidRootPart")
             local hum = char and char:FindFirstChildOfClass("Humanoid")
@@ -318,17 +364,17 @@ task.spawn(function()
                 local lvl = obterLevelAtual()
                 local q = obterMissao(lvl)
 
-                -- 1. Se não tiver missão, vai até o NPC e pega
+                -- 1. Se não tiver missão, vai ao NPC e pega
                 if not temMissaoAtiva() then
                     removerFlutuacao(root)
                     root.CFrame = q.CFrameQuest + Vector3.new(0, 3, 0)
-                    task.wait(0.5)
+                    task.wait(0.4)
                     pcall(function()
                         ReplicatedStorage.Remotes.CommF_:InvokeServer("StartQuest", q.Quest, q.LevelId)
                     end)
-                    task.wait(1.5)
+                    task.wait(1.2)
                 else
-                    -- 2. Localiza os monstros da missão
+                    -- 2. Localiza os monstros da missão ativa
                     local alvo = nil
                     local mobs = {}
                     local enemies = Workspace:FindFirstChild("Enemies")
@@ -341,39 +387,42 @@ task.spawn(function()
                         end
                     end
 
-                    -- Se encontrou o monstro, posiciona no ar e ataca
+                    -- Se encontrou monstros vivos
                     if alvo and alvo:FindFirstChild("HumanoidRootPart") then
                         local tPos = alvo.HumanoidRootPart.Position
-                        fixarFlutuacao(root)
-                        root.CFrame = CFrame.new(tPos + Vector3.new(0, 22, 0), tPos)
 
-                        -- Bring Mobs Leve (Junta monstros próximos)
+                        -- Trava a flutuação a 20 studs de altura no ar acima dos monstros
+                        fixarFlutuacao(root)
+                        root.CFrame = CFrame.new(tPos + Vector3.new(0, 20, 0), tPos)
+
+                        -- Bring Mobs (Agrupa os outros monstros da missão embaixo de você)
                         for _, m in ipairs(mobs) do
                             if m ~= alvo and m:FindFirstChild("HumanoidRootPart") then
                                 m.HumanoidRootPart.CFrame = alvo.HumanoidRootPart.CFrame
                                 m.HumanoidRootPart.CanCollide = false
-                                if m:FindFirstChild("Humanoid") then m.Humanoid.WalkSpeed = 0 end
+                                if m:FindFirstChild("Humanoid") then 
+                                    m.Humanoid.WalkSpeed = 0 
+                                end
                             end
                         end
 
-                        equiparArma()
-                        VirtualUser:CaptureController()
-                        VirtualUser:ClickButton1(Vector2.new(0, 0))
+                        -- Executa o melhor Fast Attack contínuo
+                        executarFastAttack()
                     else
-                        -- Monstros ainda renascendo
+                        -- Monstros renascendo: flutua em segurança sobre a ilha
                         fixarFlutuacao(root)
-                        root.CFrame = q.CFrameQuest + Vector3.new(0, 35, 0)
-                        task.wait(1.5)
+                        root.CFrame = q.CFrameQuest + Vector3.new(0, 30, 0)
+                        task.wait(1.2)
                     end
                 end
             else
-                task.wait(2)
+                task.wait(2) -- Aguarda renascer caso morra
             end
         end
     end
-end)-- [7. THREADS COMPLEMENTARES: AUTO FRUTAS, BAÚS, STATS, VELOCIDADE & ESP]
+end)
 
--- A) Auto Pegar Frutas do Chão
+-- [7. MOTOR: AUTO PEGAR FRUTAS DO CHÃO]
 task.spawn(function()
     while true do
         task.wait(2)
@@ -383,8 +432,10 @@ task.spawn(function()
                 if item:IsA("Tool") and string.find(string.lower(item.Name), "fruit") then
                     local handle = item:FindFirstChild("Handle") or item:FindFirstChildWhichIsA("BasePart")
                     if handle then
+                        -- Teleporta até a fruta
                         root.CFrame = handle.CFrame + Vector3.new(0, 2, 0)
                         task.wait(0.5)
+                        -- Pega a fruta para a mochila
                         if firetouchinterest then
                             firetouchinterest(root, handle, 0)
                             firetouchinterest(root, handle, 1)
@@ -396,108 +447,3 @@ task.spawn(function()
         end
     end
 end)
-
--- B) Auto Farm de Baús (Dinheiro Rápido)
-task.spawn(function()
-    while true do
-        task.wait(1)
-        if _G.PH_AutoChests and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            local root = LocalPlayer.Character.HumanoidRootPart
-            for _, item in ipairs(Workspace:GetDescendants()) do
-                if not _G.PH_AutoChests then break end
-                if item:IsA("BasePart") and string.find(string.lower(item.Name), "chest") and item.Parent then
-                    root.CFrame = item.CFrame + Vector3.new(0, 2, 0)
-                    if firetouchinterest then
-                        firetouchinterest(root, item, 0)
-                        firetouchinterest(root, item, 1)
-                    end
-                    task.wait(1)
-                end
-            end
-        end
-    end
-end)
-
--- C) Auto Stats (Distribui pontos em Melee e Defesa ao subir de nível)
-task.spawn(function()
-    while true do
-        task.wait(1.5)
-        if _G.PH_AutoStats then
-            local d = LocalPlayer:FindFirstChild("Data")
-            local pts = d and d:FindFirstChild("Points")
-            if pts and pts.Value > 0 then
-                local gastar = math.min(pts.Value, 3)
-                pcall(function()
-                    ReplicatedStorage.Remotes.CommF_:InvokeServer("AddPoint", "Melee", gastar)
-                    ReplicatedStorage.Remotes.CommF_:InvokeServer("AddPoint", "Defense", gastar)
-                end)
-            end
-        end
-    end
-end)
-
--- D) Velocidade Contínua com Reconexão no Respawn
-local function manterVelocidade(char)
-    if not char or not _G.PH_Speed then return end
-    local hum = char:WaitForChild("Humanoid", 5)
-    if hum then
-        hum.WalkSpeed = 70
-        hum:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
-            if _G.PH_Speed and hum and hum.WalkSpeed ~= 70 then 
-                hum.WalkSpeed = 70 
-            end
-        end)
-    end
-end
-
-LocalPlayer.CharacterAdded:Connect(function(c)
-    task.wait(0.5)
-    if _G.PH_Speed then manterVelocidade(c) end
-end)
-
--- E) ESP de Jogadores com Distância em Metros
-local function aplicarESP(p)
-    if p == LocalPlayer then return end
-    task.spawn(function()
-        while p and p.Parent do
-            if _G.PH_ESP and p.Character then
-                local head = p.Character:FindFirstChild("Head")
-                local r = p.Character:FindFirstChild("HumanoidRootPart")
-                local myR = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-
-                if head and not head:FindFirstChild("PH_Tag") then
-                    local bg = Instance.new("BillboardGui")
-                    local lbl = Instance.new("TextLabel")
-                    bg.Name = "PH_Tag"
-                    bg.Parent = head
-                    bg.AlwaysOnTop = true
-                    bg.Size = UDim2.new(0, 110, 0, 24)
-                    bg.StudsOffset = Vector3.new(0, 2.5, 0)
-
-                    lbl.Name = "Txt"
-                    lbl.Parent = bg
-                    lbl.BackgroundTransparency = 1
-                    lbl.Size = UDim2.new(1, 0, 1, 0)
-                    lbl.TextSize = 10
-                    lbl.Font = Enum.Font.SourceSansBold
-                    lbl.TextColor3 = Color3.fromRGB(245, 158, 11)
-                    lbl.TextStrokeTransparency = 0.4
-                end
-
-                if head and r and myR and head:FindFirstChild("PH_Tag") then
-                    local dist = math.floor((myR.Position - r.Position).Magnitude)
-                    head.PH_Tag.Txt.Text = p.Name .. " [" .. dist .. "m]"
-                end
-            else
-                if p.Character and p.Character:FindFirstChild("Head") and p.Character.Head:FindFirstChild("PH_Tag") then
-                    p.Character.Head.PH_Tag:Destroy()
-                end
-            end
-            task.wait(2)
-        end
-    end)
-end
-
--- Inicializa o ESP para jogadores atuais e novos que entrarem no servidor
-for _, pl in ipairs(Players:GetPlayers()) do aplicarESP(pl) end
-Players.PlayerAdded:Connect(aplicarESP)
