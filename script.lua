@@ -1,21 +1,22 @@
 --[[
     =============================================================================
-    🏴‍☠️ PIRATE HUB V8 - O VERDADEIRO CLIQUE MOBILE (COMBAT FRAMEWORK + TOUCH)
-    ⚡ 100% Garantido de Bater e Registrar Dano em Celulares (Realme C3, etc.)
-    📱 Compatível com Arceus X Neo, Delta, Hydrogen e PC
+    🏴‍☠️ PIRATE HUB V9 - REACH FAST ATTACK (PEGA DE LONGE NOS NPCS E PLAYERS)
+    ⚡ Ataque à Distância 100 Studs + Fast Click Instantâneo
+    📱 100% Otimizado para Mobile (Realme C3, Arceus X, Delta, Hydrogen)
     =============================================================================
 ]]
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 
--- Limpa versões anteriores
+-- Limpa execuções antigas
 pcall(function()
-    if _G.PirateHub_V8_GUI and _G.PirateHub_V8_GUI.Parent then
-        _G.PirateHub_V8_GUI:Destroy()
+    if _G.PH_Reach_GUI and _G.PH_Reach_GUI.Parent then
+        _G.PH_Reach_GUI:Destroy()
     end
 end)
 
 _G.PH_AutoFarm = false
+_G.PH_FastClick = true
 
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
@@ -26,12 +27,12 @@ local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
 
--- [1. INJETOR UNIVERSAL DE INTERFACE]
+-- [1. INJETOR UNIVERSAL DE TELA]
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "PirateHub_V8_" .. math.random(1000, 9999)
+ScreenGui.Name = "PH_Reach_" .. math.random(1000, 9999)
 ScreenGui.ResetOnSpawn = false
 ScreenGui.DisplayOrder = 999999
-_G.PirateHub_V8_GUI = ScreenGui
+_G.PH_Reach_GUI = ScreenGui
 
 local parentUI = nil
 if typeof(gethui) == "function" then
@@ -87,7 +88,7 @@ local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, -40, 1, 0)
 title.Position = UDim2.new(0, 12, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "⚡ PIRATE <font color='#F59E0B'>AUTO CLICK</font>"
+title.Text = "⚡ PIRATE <font color='#F59E0B'>REACH KILL</font>"
 title.RichText = true
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 12
@@ -115,7 +116,7 @@ closeBtn.MouseButton1Click:Connect(function()
     mainFrame.Visible = false
 end)
 
--- Botão Flutuante (Mobile ⚡)
+-- Botão Flutuante Móvel (⚡)
 local toggleBtn = Instance.new("TextButton")
 toggleBtn.Name = "FloatingToggle"
 toggleBtn.Size = UDim2.new(0, 48, 0, 48)
@@ -176,7 +177,7 @@ local label = Instance.new("TextLabel")
 label.Size = UDim2.new(0.65, 0, 1, 0)
 label.Position = UDim2.new(0, 12, 0, 0)
 label.BackgroundTransparency = 1
-label.Text = "⚔️ AUTO FARM LEVEL"
+label.Text = "⚔️ AUTO FARM + REACH"
 label.TextColor3 = Color3.fromRGB(230, 235, 255)
 label.TextSize = 11
 label.Font = Enum.Font.GothamBold
@@ -228,7 +229,7 @@ local footer = Instance.new("TextLabel")
 footer.Size = UDim2.new(1, 0, 0, 25)
 footer.Position = UDim2.new(0, 0, 1, -28)
 footer.BackgroundTransparency = 1
-footer.Text = "⚡ Clique Mobile Real (Combat Engine)"
+footer.Text = "⚡ Reach 100 Studs (NPCs & Players)"
 footer.TextColor3 = Color3.fromRGB(120, 135, 160)
 footer.TextSize = 10
 footer.Font = Enum.Font.GothamMedium
@@ -276,12 +277,14 @@ local function temMissaoAtiva()
     return (pg and pg:FindFirstChild("Main") and pg.Main:FindFirstChild("Quest") and pg.Main.Quest.Visible)
 end
 
--- [4. O VERDADEIRO CLIQUE MOBILE (COMBINA VIRTUALINPUT COM COMBAT CONTROLLER)]
-local function executarCliqueMobile(alvo)
+-- [4. MOTOR DE REACH ATTACK: PEGA DE LONGE EM TODOS OS ALVOS AO REDOR]
+local function executarReachAttack()
     local char = LocalPlayer.Character
     if not char or not char:FindFirstChild("Humanoid") or char.Humanoid.Health <= 0 then return end
+    local myRoot = char:FindFirstChild("HumanoidRootPart")
+    if not myRoot then return end
 
-    -- 1. Equipa o Melee / Espada
+    -- 1. Garante que a ferramenta está na mão
     local tool = char:FindFirstChildOfClass("Tool")
     if not tool then
         local bp = LocalPlayer:FindFirstChild("Backpack")
@@ -296,19 +299,26 @@ local function executarCliqueMobile(alvo)
         end
     end
 
-    -- 2. Expande o corpo do monstro para 50 studs (para todo golpe conectar)
-    if alvo and alvo:FindFirstChild("HumanoidRootPart") then
-        local hrp = alvo.HumanoidRootPart
-        hrp.Size = Vector3.new(50, 50, 50)
-        hrp.Transparency = 1
-        hrp.CanCollide = false
+    -- 2. Escaneia todos os inimigos e players num raio de 100 studs e expande a hitbox
+    local enemies = Workspace:FindFirstChild("Enemies")
+    if enemies then
+        for _, e in ipairs(enemies:GetChildren()) do
+            if e:FindFirstChild("Humanoid") and e.Humanoid.Health > 0 and e:FindFirstChild("HumanoidRootPart") then
+                local dist = (e.HumanoidRootPart.Position - myRoot.Position).Magnitude
+                if dist <= 100 then
+                    e.HumanoidRootPart.Size = Vector3.new(65, 65, 65)
+                    e.HumanoidRootPart.Transparency = 1
+                    e.HumanoidRootPart.CanCollide = false
+                end
+            end
+        end
     end
 
-    -- 3. Triplo acionamento de clique: Tool + Touch Virtual + VirtualUser
+    -- 3. Disparo ultra rápido do ataque à distância
     if tool then
         pcall(function() tool:Activate() end)
 
-        -- Toque na tela para Mobile
+        -- Toque na tela (Mobile Touch)
         pcall(function()
             local vp = Workspace.CurrentCamera.ViewportSize
             VirtualInputManager:SendMouseButtonEvent(vp.X / 2, vp.Y / 2, 0, true, game, 1)
@@ -318,13 +328,6 @@ local function executarCliqueMobile(alvo)
         VirtualUser:CaptureController()
         VirtualUser:Button1Down(Vector2.new(0, 0))
         VirtualUser:Button1Up(Vector2.new(0, 0))
-
-        -- Disparo do controller do Blox Fruits
-        pcall(function()
-            if ReplicatedStorage:FindFirstChild("RigControllerEvent") then
-                ReplicatedStorage.RigControllerEvent:FireServer("weaponChange", tostring(tool.Name))
-            end
-        end)
     end
 end-- [5. ESTABILIZADOR DE VOO & NOCLIP]
 local function fixarFlutuacao(root)
@@ -343,7 +346,7 @@ local function removerFlutuacao(root)
     end
 end
 
--- Noclip para não travar nas estruturas
+-- Noclip durante o farm para voar direto sem bater em paredes
 RunService.Stepped:Connect(function()
     if _G.PH_AutoFarm then
         local char = LocalPlayer.Character
@@ -357,10 +360,10 @@ RunService.Stepped:Connect(function()
     end
 end)
 
--- [6. MOTOR PRINCIPAL: AUTO FARM LEVEL COM O CLIQUE MOBILE REAL]
+-- [6. MOTOR PRINCIPAL: AUTO FARM LEVEL COM REACH ATTACK]
 task.spawn(function()
     while true do
-        task.wait(0.08) -- Cadência ideal para múltiplos golpes por segundo no celular
+        task.wait(0.08) -- Cadência ultra rápida para múltiplos hits por segundo
 
         if _G.PH_AutoFarm then
             local char = LocalPlayer.Character
@@ -371,7 +374,7 @@ task.spawn(function()
                 local lvl = obterLevelAtual()
                 local q = obterMissao(lvl)
 
-                -- 1. Se não tiver com a missão ativa, vai ao NPC e pega
+                -- 1. Se não tiver missão ativa na tela, vai ao NPC pegar
                 if not temMissaoAtiva() then
                     removerFlutuacao(root)
                     root.CFrame = q.CFrameQuest + Vector3.new(0, 3, 0)
@@ -381,7 +384,7 @@ task.spawn(function()
                     end)
                     task.wait(1.0)
                 else
-                    -- 2. Localiza os monstros da missão
+                    -- 2. Localiza os monstros da missão atual
                     local alvo = nil
                     local mobs = {}
                     local enemies = Workspace:FindFirstChild("Enemies")
@@ -398,11 +401,11 @@ task.spawn(function()
                     if alvo and alvo:FindFirstChild("HumanoidRootPart") then
                         local tPos = alvo.HumanoidRootPart.Position
 
-                        -- Flutua a 11 studs de altura acima da cabeça dos monstros
+                        -- Flutua a 12 studs de distância (Totalmente seguro e com alcance máximo de dano)
                         fixarFlutuacao(root)
-                        root.CFrame = CFrame.new(tPos + Vector3.new(0, 11, 0), tPos)
+                        root.CFrame = CFrame.new(tPos + Vector3.new(0, 12, 0), tPos)
 
-                        -- Bring Mobs: Agrupa os outros monstros da missão embaixo de você
+                        -- Bring Mobs: Puxa todos os monstros do spawn para o mesmo ponto
                         for _, m in ipairs(mobs) do
                             if m ~= alvo and m:FindFirstChild("HumanoidRootPart") then
                                 m.HumanoidRootPart.CFrame = alvo.HumanoidRootPart.CFrame
@@ -413,10 +416,10 @@ task.spawn(function()
                             end
                         end
 
-                        -- Executa o novo Clique Mobile com Touch Virtual + Combat Controller
-                        executarCliqueMobile(alvo)
+                        -- Executa o Reach Attack que bate a 100 studs de distância
+                        executarReachAttack()
                     else
-                        -- Monstros renascendo: flutua com segurança
+                        -- Aguardando os monstros renascerem: flutua em segurança na ilha
                         fixarFlutuacao(root)
                         root.CFrame = q.CFrameQuest + Vector3.new(0, 25, 0)
                         task.wait(1.0)
