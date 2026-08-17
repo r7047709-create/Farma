@@ -1,61 +1,60 @@
 --[[
     =============================================================================
-    🏴‍☠️ PIRATE HUB ULTIMATE 2026 (ENGINE REDESENHADA & COMBAT BYPASS)
-    ⚡ Fast Attack Sem Delay + Bring Mobs Magnético + Auto Haki + Auto Farm
-    📱 100% Compatível com Arceus X Neo, Delta, Hydrogen e PC
+    🏴‍☠️ PIRATE HUB V8 - O VERDADEIRO CLIQUE MOBILE (COMBAT FRAMEWORK + TOUCH)
+    ⚡ 100% Garantido de Bater e Registrar Dano em Celulares (Realme C3, etc.)
+    📱 Compatível com Arceus X Neo, Delta, Hydrogen e PC
     =============================================================================
 ]]
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 
--- Limpeza de instâncias anteriores
+-- Limpa versões anteriores
 pcall(function()
-    if _G.PirateHub_LoadedUI and _G.PirateHub_LoadedUI.Parent then
-        _G.PirateHub_LoadedUI:Destroy()
+    if _G.PirateHub_V8_GUI and _G.PirateHub_V8_GUI.Parent then
+        _G.PirateHub_V8_GUI:Destroy()
     end
 end)
 
 _G.PH_AutoFarm = false
-_G.PH_FastAttack = true
-_G.PH_AutoHaki = true
 
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local VirtualUser = game:GetService("VirtualUser")
+local VirtualInputManager = game:GetService("VirtualInputManager")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
 
--- [1. INJETOR DE TELA SEGURO GETUI/PROTECT]
+-- [1. INJETOR UNIVERSAL DE INTERFACE]
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "PirateHub_2026_" .. math.random(10000, 99999)
+ScreenGui.Name = "PirateHub_V8_" .. math.random(1000, 9999)
 ScreenGui.ResetOnSpawn = false
 ScreenGui.DisplayOrder = 999999
-_G.PirateHub_LoadedUI = ScreenGui
+_G.PirateHub_V8_GUI = ScreenGui
 
-local parentTarget = nil
+local parentUI = nil
 if typeof(gethui) == "function" then
-    parentTarget = gethui()
+    parentUI = gethui()
 elseif typeof(syn) == "table" and typeof(syn.protect_gui) == "function" then
     syn.protect_gui(ScreenGui)
-    parentTarget = game:GetService("CoreGui")
+    parentUI = game:GetService("CoreGui")
 else
     local ok, _ = pcall(function() ScreenGui.Parent = game:GetService("CoreGui") end)
     if not ok or not ScreenGui.Parent then
-        parentTarget = LocalPlayer:WaitForChild("PlayerGui")
+        parentUI = LocalPlayer:WaitForChild("PlayerGui")
     else
-        parentTarget = game:GetService("CoreGui")
+        parentUI = game:GetService("CoreGui")
     end
 end
-ScreenGui.Parent = parentTarget
+ScreenGui.Parent = parentUI
 
 -- Janela Principal
 local mainFrame = Instance.new("Frame")
-mainFrame.Name = "Main"
-mainFrame.Size = UDim2.new(0, 260, 0, 210)
-mainFrame.Position = UDim2.new(0.5, -130, 0.35, -105)
-mainFrame.BackgroundColor3 = Color3.fromRGB(12, 14, 22)
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 240, 0, 190)
+mainFrame.Position = UDim2.new(0.5, -120, 0.35, -95)
+mainFrame.BackgroundColor3 = Color3.fromRGB(13, 15, 23)
 mainFrame.BorderSizePixel = 0
 mainFrame.Active = true
 mainFrame.Draggable = true
@@ -63,35 +62,35 @@ mainFrame.ZIndex = 100
 mainFrame.Parent = ScreenGui
 
 local mainCorner = Instance.new("UICorner")
-mainCorner.CornerRadius = UDim.new(0, 14)
+mainCorner.CornerRadius = UDim.new(0, 12)
 mainCorner.Parent = mainFrame
 
 local mainStroke = Instance.new("UIStroke")
-mainStroke.Thickness = 1.8
+mainStroke.Thickness = 1.5
 mainStroke.Color = Color3.fromRGB(245, 158, 11)
-mainStroke.Transparency = 0.15
+mainStroke.Transparency = 0.2
 mainStroke.Parent = mainFrame
 
--- Barra Superior
+-- Cabeçalho
 local header = Instance.new("Frame")
-header.Size = UDim2.new(1, 0, 0, 38)
-header.BackgroundColor3 = Color3.fromRGB(18, 22, 34)
+header.Size = UDim2.new(1, 0, 0, 36)
+header.BackgroundColor3 = Color3.fromRGB(19, 23, 35)
 header.BorderSizePixel = 0
 header.ZIndex = 101
 header.Parent = mainFrame
 
 local headerCorner = Instance.new("UICorner")
-headerCorner.CornerRadius = UDim.new(0, 14)
+headerCorner.CornerRadius = UDim.new(0, 12)
 headerCorner.Parent = header
 
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, -40, 1, 0)
 title.Position = UDim2.new(0, 12, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "⚡ PIRATE HUB <font color='#F59E0B'>PRO 2026</font>"
+title.Text = "⚡ PIRATE <font color='#F59E0B'>AUTO CLICK</font>"
 title.RichText = true
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.TextSize = 13
+title.TextSize = 12
 title.Font = Enum.Font.GothamBlack
 title.TextXAlignment = Enum.TextXAlignment.Left
 title.ZIndex = 102
@@ -99,7 +98,7 @@ title.Parent = header
 
 local closeBtn = Instance.new("TextButton")
 closeBtn.Size = UDim2.new(0, 24, 0, 24)
-closeBtn.Position = UDim2.new(1, -30, 0, 7)
+closeBtn.Position = UDim2.new(1, -28, 0, 6)
 closeBtn.BackgroundColor3 = Color3.fromRGB(235, 55, 55)
 closeBtn.Text = "×"
 closeBtn.TextSize = 16
@@ -124,7 +123,7 @@ toggleBtn.Position = UDim2.new(0, 15, 0.45, -24)
 toggleBtn.BackgroundColor3 = Color3.fromRGB(245, 158, 11)
 toggleBtn.Text = "⚡"
 toggleBtn.TextSize = 24
-toggleBtn.TextColor3 = Color3.fromRGB(12, 14, 22)
+toggleBtn.TextColor3 = Color3.fromRGB(13, 15, 23)
 toggleBtn.Active = true
 toggleBtn.Draggable = true
 toggleBtn.ZIndex = 200
@@ -137,7 +136,7 @@ toggleCorner.Parent = toggleBtn
 local toggleStroke = Instance.new("UIStroke")
 toggleStroke.Thickness = 2
 toggleStroke.Color = Color3.fromRGB(255, 255, 255)
-toggleStroke.Transparency = 0.3
+toggleStroke.Transparency = 0.4
 toggleStroke.Parent = toggleBtn
 
 toggleBtn.MouseButton1Click:Connect(function()
@@ -148,102 +147,95 @@ UserInputService.InputBegan:Connect(function(input, processed)
     if not processed and input.KeyCode == Enum.KeyCode.RightControl then
         mainFrame.Visible = not mainFrame.Visible
     end
-end)-- [2. BOTÕES DE CONTROLE TOUCH MOBILE]
+end)-- [2. BOTÃO DE ATIVAÇÃO]
 local btnContainer = Instance.new("Frame")
-btnContainer.Size = UDim2.new(1, -24, 0, 100)
+btnContainer.Size = UDim2.new(1, -24, 0, 90)
 btnContainer.Position = UDim2.new(0, 12, 0, 48)
 btnContainer.BackgroundTransparency = 1
 btnContainer.ZIndex = 101
 btnContainer.Parent = mainFrame
 
-local listLayout = Instance.new("UIListLayout")
-listLayout.Padding = UDim.new(0, 10)
-listLayout.Parent = btnContainer
+local farmBtn = Instance.new("TextButton")
+farmBtn.Size = UDim2.new(1, 0, 0, 46)
+farmBtn.BackgroundColor3 = Color3.fromRGB(22, 26, 40)
+farmBtn.Text = ""
+farmBtn.AutoButtonColor = false
+farmBtn.ZIndex = 102
+farmBtn.Parent = btnContainer
 
--- Criador de Botões Mobile Grandes (Fáceis de tocar na tela)
-local function criarToggle(texto, callback)
-    local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(1, 0, 0, 44)
-    btn.BackgroundColor3 = Color3.fromRGB(20, 24, 38)
-    btn.Text = ""
-    btn.AutoButtonColor = false
-    btn.ZIndex = 102
-    btn.Parent = btnContainer
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 8)
+corner.Parent = farmBtn
 
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, 10)
-    corner.Parent = btn
+local bStroke = Instance.new("UIStroke")
+bStroke.Thickness = 1
+bStroke.Color = Color3.fromRGB(45, 55, 80)
+bStroke.Parent = farmBtn
 
-    local bStroke = Instance.new("UIStroke")
-    bStroke.Thickness = 1.2
-    bStroke.Color = Color3.fromRGB(45, 55, 80)
-    bStroke.Parent = btn
+local label = Instance.new("TextLabel")
+label.Size = UDim2.new(0.65, 0, 1, 0)
+label.Position = UDim2.new(0, 12, 0, 0)
+label.BackgroundTransparency = 1
+label.Text = "⚔️ AUTO FARM LEVEL"
+label.TextColor3 = Color3.fromRGB(230, 235, 255)
+label.TextSize = 11
+label.Font = Enum.Font.GothamBold
+label.TextXAlignment = Enum.TextXAlignment.Left
+label.ZIndex = 103
+label.Parent = farmBtn
 
-    local label = Instance.new("TextLabel")
-    label.Size = UDim2.new(0.65, 0, 1, 0)
-    label.Position = UDim2.new(0, 12, 0, 0)
-    label.BackgroundTransparency = 1
-    label.Text = texto
-    label.TextColor3 = Color3.fromRGB(235, 240, 255)
-    label.TextSize = 12
-    label.Font = Enum.Font.GothamBold
-    label.TextXAlignment = Enum.TextXAlignment.Left
-    label.ZIndex = 103
-    label.Parent = btn
+local pill = Instance.new("Frame")
+pill.Size = UDim2.new(0, 38, 0, 22)
+pill.Position = UDim2.new(1, -48, 0.5, -11)
+pill.BackgroundColor3 = Color3.fromRGB(45, 55, 75)
+pill.ZIndex = 103
+pill.Parent = farmBtn
 
-    local pill = Instance.new("Frame")
-    pill.Size = UDim2.new(0, 42, 0, 24)
-    pill.Position = UDim2.new(1, -52, 0.5, -12)
-    pill.BackgroundColor3 = Color3.fromRGB(45, 55, 75)
-    pill.ZIndex = 103
-    pill.Parent = btn
+local pillCorner = Instance.new("UICorner")
+pillCorner.CornerRadius = UDim.new(1, 0)
+pillCorner.Parent = pill
 
-    local pillCorner = Instance.new("UICorner")
-    pillCorner.CornerRadius = UDim.new(1, 0)
-    pillCorner.Parent = pill
+local circle = Instance.new("Frame")
+circle.Size = UDim2.new(0, 16, 0, 16)
+circle.Position = UDim2.new(0, 3, 0.5, -8)
+circle.BackgroundColor3 = Color3.fromRGB(170, 180, 200)
+circle.ZIndex = 104
+circle.Parent = pill
 
-    local circle = Instance.new("Frame")
-    circle.Size = UDim2.new(0, 18, 0, 18)
-    circle.Position = UDim2.new(0, 3, 0.5, -9)
-    circle.BackgroundColor3 = Color3.fromRGB(170, 180, 200)
-    circle.ZIndex = 104
-    circle.Parent = pill
+local circleCorner = Instance.new("UICorner")
+circleCorner.CornerRadius = UDim.new(1, 0)
+circleCorner.Parent = circle
 
-    local circleCorner = Instance.new("UICorner")
-    circleCorner.CornerRadius = UDim.new(1, 0)
-    circleCorner.Parent = circle
-
-    local estado = false
-    btn.MouseButton1Click:Connect(function()
-        estado = not estado
-        if estado then
-            pill.BackgroundColor3 = Color3.fromRGB(245, 158, 11)
-            circle.Position = UDim2.new(1, -21, 0.5, -9)
-            circle.BackgroundColor3 = Color3.fromRGB(12, 14, 22)
-            bStroke.Color = Color3.fromRGB(245, 158, 11)
-        else
-            pill.BackgroundColor3 = Color3.fromRGB(45, 55, 75)
-            circle.Position = UDim2.new(0, 3, 0.5, -9)
-            circle.BackgroundColor3 = Color3.fromRGB(170, 180, 200)
-            bStroke.Color = Color3.fromRGB(45, 55, 80)
+farmBtn.MouseButton1Click:Connect(function()
+    _G.PH_AutoFarm = not _G.PH_AutoFarm
+    if _G.PH_AutoFarm then
+        pill.BackgroundColor3 = Color3.fromRGB(245, 158, 11)
+        circle.Position = UDim2.new(1, -19, 0.5, -8)
+        circle.BackgroundColor3 = Color3.fromRGB(13, 15, 23)
+        bStroke.Color = Color3.fromRGB(245, 158, 11)
+    else
+        pill.BackgroundColor3 = Color3.fromRGB(45, 55, 75)
+        circle.Position = UDim2.new(0, 3, 0.5, -8)
+        circle.BackgroundColor3 = Color3.fromRGB(170, 180, 200)
+        bStroke.Color = Color3.fromRGB(45, 55, 80)
+        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character.HumanoidRootPart:FindFirstChild("PH_Flight") then
+            LocalPlayer.Character.HumanoidRootPart.PH_Flight:Destroy()
         end
-        callback(estado)
-    end)
-    return btn
-end
+    end
+end)
 
 local footer = Instance.new("TextLabel")
 footer.Size = UDim2.new(1, 0, 0, 25)
-footer.Position = UDim2.new(0, 0, 1, -26)
+footer.Position = UDim2.new(0, 0, 1, -28)
 footer.BackgroundTransparency = 1
-footer.Text = "📱 Realme C3 • Motor Touch 60 FPS"
+footer.Text = "⚡ Clique Mobile Real (Combat Engine)"
 footer.TextColor3 = Color3.fromRGB(120, 135, 160)
 footer.TextSize = 10
 footer.Font = Enum.Font.GothamMedium
 footer.ZIndex = 102
 footer.Parent = mainFrame
 
--- [3. TABELA COMPLETA DE MISSÕES - SEA 1]
+-- [3. TABELA DE MISSÕES BLOX FRUITS - SEA 1]
 local TABELA_MISSOES = {
     {MinLvl = 1,   MaxLvl = 9,    Quest = "BanditQuest1",     NpcName = "Bandit",              LevelId = 1, CFrameQuest = CFrame.new(1059, 16, 1549)},
     {MinLvl = 10,  MaxLvl = 14,   Quest = "JungleQuest",      NpcName = "Monkey",              LevelId = 1, CFrameQuest = CFrame.new(-1598, 36, 153)},
@@ -284,22 +276,12 @@ local function temMissaoAtiva()
     return (pg and pg:FindFirstChild("Main") and pg.Main:FindFirstChild("Quest") and pg.Main.Quest.Visible)
 end
 
--- [4. AUTO BUSO HAKI (AURA DE DANO)]
-local function ativarHaki()
-    local char = LocalPlayer.Character
-    if char and not char:FindFirstChild("HasBuso") then
-        pcall(function()
-            ReplicatedStorage.Remotes.CommF_:InvokeServer("Buso")
-        end)
-    end
-end
-
--- [5. MOTOR DE COMBATE ULTRA RÁPIDO MOBILE]
-local function atacarMonstroMobile(alvo)
+-- [4. O VERDADEIRO CLIQUE MOBILE (COMBINA VIRTUALINPUT COM COMBAT CONTROLLER)]
+local function executarCliqueMobile(alvo)
     local char = LocalPlayer.Character
     if not char or not char:FindFirstChild("Humanoid") or char.Humanoid.Health <= 0 then return end
 
-    -- 1. Equipa Estilo de Luta ou Espada
+    -- 1. Equipa o Melee / Espada
     local tool = char:FindFirstChildOfClass("Tool")
     if not tool then
         local bp = LocalPlayer:FindFirstChild("Backpack")
@@ -314,26 +296,41 @@ local function atacarMonstroMobile(alvo)
         end
     end
 
-    -- 2. Hitbox Expandida Gigante (60 Studs)
+    -- 2. Expande o corpo do monstro para 50 studs (para todo golpe conectar)
     if alvo and alvo:FindFirstChild("HumanoidRootPart") then
         local hrp = alvo.HumanoidRootPart
-        hrp.Size = Vector3.new(60, 60, 60)
+        hrp.Size = Vector3.new(50, 50, 50)
         hrp.Transparency = 1
         hrp.CanCollide = false
     end
 
-    -- 3. Golpe Imediato
+    -- 3. Triplo acionamento de clique: Tool + Touch Virtual + VirtualUser
     if tool then
         pcall(function() tool:Activate() end)
+
+        -- Toque na tela para Mobile
+        pcall(function()
+            local vp = Workspace.CurrentCamera.ViewportSize
+            VirtualInputManager:SendMouseButtonEvent(vp.X / 2, vp.Y / 2, 0, true, game, 1)
+            VirtualInputManager:SendMouseButtonEvent(vp.X / 2, vp.Y / 2, 0, false, game, 1)
+        end)
+
         VirtualUser:CaptureController()
         VirtualUser:Button1Down(Vector2.new(0, 0))
         VirtualUser:Button1Up(Vector2.new(0, 0))
+
+        -- Disparo do controller do Blox Fruits
+        pcall(function()
+            if ReplicatedStorage:FindFirstChild("RigControllerEvent") then
+                ReplicatedStorage.RigControllerEvent:FireServer("weaponChange", tostring(tool.Name))
+            end
+        end)
     end
-end-- [6. ESTABILIZADOR DE VOO & NOCLIP MOBILE]
+end-- [5. ESTABILIZADOR DE VOO & NOCLIP]
 local function fixarFlutuacao(root)
-    if not root:FindFirstChild("PH_MobileFlight") then
+    if not root:FindFirstChild("PH_Flight") then
         local bv = Instance.new("BodyVelocity")
-        bv.Name = "PH_MobileFlight"
+        bv.Name = "PH_Flight"
         bv.Velocity = Vector3.zero
         bv.MaxForce = Vector3.new(9e9, 9e9, 9e9)
         bv.Parent = root
@@ -341,12 +338,12 @@ local function fixarFlutuacao(root)
 end
 
 local function removerFlutuacao(root)
-    if root and root:FindFirstChild("PH_MobileFlight") then
-        root.PH_MobileFlight:Destroy()
+    if root and root:FindFirstChild("PH_Flight") then
+        root.PH_Flight:Destroy()
     end
 end
 
--- Noclip otimizado para não colidir em construções ou ilhas
+-- Noclip para não travar nas estruturas
 RunService.Stepped:Connect(function()
     if _G.PH_AutoFarm then
         local char = LocalPlayer.Character
@@ -360,18 +357,10 @@ RunService.Stepped:Connect(function()
     end
 end)
 
--- [7. REGISTRO DO BOTÃO NA INTERFACE TOUCH]
-criarToggle("⚔️ AUTO FARM LEVEL", function(on)
-    _G.PH_AutoFarm = on
-    if not on and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-        removerFlutuacao(LocalPlayer.Character.HumanoidRootPart)
-    end
-end)
-
--- [8. MOTOR PRINCIPAL: AUTO FARM LEVEL TOUCH MOBILE]
+-- [6. MOTOR PRINCIPAL: AUTO FARM LEVEL COM O CLIQUE MOBILE REAL]
 task.spawn(function()
     while true do
-        task.wait(0.08) -- Taxa de clique ideal para mobile sem esquentar o celular
+        task.wait(0.08) -- Cadência ideal para múltiplos golpes por segundo no celular
 
         if _G.PH_AutoFarm then
             local char = LocalPlayer.Character
@@ -379,11 +368,10 @@ task.spawn(function()
             local hum = char and char:FindFirstChildOfClass("Humanoid")
 
             if root and hum and hum.Health > 0 then
-                ativarHaki()
                 local lvl = obterLevelAtual()
                 local q = obterMissao(lvl)
 
-                -- 1. Se não tiver com a missão na tela, vai até o NPC e pega automaticamente
+                -- 1. Se não tiver com a missão ativa, vai ao NPC e pega
                 if not temMissaoAtiva() then
                     removerFlutuacao(root)
                     root.CFrame = q.CFrameQuest + Vector3.new(0, 3, 0)
@@ -393,7 +381,7 @@ task.spawn(function()
                     end)
                     task.wait(1.0)
                 else
-                    -- 2. Localiza os monstros da missão ativa
+                    -- 2. Localiza os monstros da missão
                     local alvo = nil
                     local mobs = {}
                     local enemies = Workspace:FindFirstChild("Enemies")
@@ -410,11 +398,11 @@ task.spawn(function()
                     if alvo and alvo:FindFirstChild("HumanoidRootPart") then
                         local tPos = alvo.HumanoidRootPart.Position
 
-                        -- Posicionamento Perfeito: 11 studs acima da cabeça (Não toma dano e acerta tudo)
+                        -- Flutua a 11 studs de altura acima da cabeça dos monstros
                         fixarFlutuacao(root)
                         root.CFrame = CFrame.new(tPos + Vector3.new(0, 11, 0), tPos)
 
-                        -- Bring Mobs Magnético: Junta os monstros todos embaixo de você
+                        -- Bring Mobs: Agrupa os outros monstros da missão embaixo de você
                         for _, m in ipairs(mobs) do
                             if m ~= alvo and m:FindFirstChild("HumanoidRootPart") then
                                 m.HumanoidRootPart.CFrame = alvo.HumanoidRootPart.CFrame
@@ -425,10 +413,10 @@ task.spawn(function()
                             end
                         end
 
-                        -- Executa o ataque contínuo com hitbox de 60 studs
-                        atacarMonstroMobile(alvo)
+                        -- Executa o novo Clique Mobile com Touch Virtual + Combat Controller
+                        executarCliqueMobile(alvo)
                     else
-                        -- Monstros renascendo: flutua em segurança sobre a ilha
+                        -- Monstros renascendo: flutua com segurança
                         fixarFlutuacao(root)
                         root.CFrame = q.CFrameQuest + Vector3.new(0, 25, 0)
                         task.wait(1.0)
